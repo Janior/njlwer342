@@ -1,15 +1,13 @@
 import React, { Component } from 'react'; 
 /// Modifica el componente para que se puedan agregar tareas 
- 
 class App extends Component { 
   constructor() { 
     super() 
     this.state = { 
       tasks: ['Sacar la ropa', 'Hacer la cama', 'Leer un rato'], 
       newTask: '' 
-     }
+     } 
    } 
- 
    render() { 
      return ( 
        <div className="wrapper"> 
@@ -20,7 +18,7 @@ class App extends Component {
                  <li key={index}>{LaTarea}</li> 
                )} 
            </ul> 
-              <form onKeyPress={this.handleKeyPress.bind(this)}> 
+              <form onSubmit={this.handleSubmit}> 
                 <input 
                   type="text" 
                   id="new-task" 
@@ -32,21 +30,19 @@ class App extends Component {
        </div> 
      ) 
    }
-
-   addNewTask(event) { 
-       this.setState({ 
+   addNewTask (event) { 
+     this.setState({ 
        newTask: event.target.value
      }) 
    } 
-
-   handleKeyPress(event) { 
-       event.preventDefault();
-       let oldTasks = this.state.tasks 
-       let newTask = this.state.newTask 
-       this.setState({ 
-           tasks: [...oldTasks, newTask], 
-           newTask: ""
-       }) 
-   }
+   handleSubmit = (event) => { 
+     event.preventDefault() 
+     let oldTasks = this.state.tasks 
+     let newTask = this.state.newTask 
+     this.setState({ 
+       tasks: [...oldTasks, newTask], 
+       newTask: '' 
+     }) 
+   } 
  } 
 export default App; 
