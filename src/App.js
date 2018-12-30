@@ -20,7 +20,7 @@ class App extends Component {
                  <li key={index}>{LaTarea}</li> 
                )} 
            </ul> 
-              <form onKeyPress={this.handleKeyPress}> 
+              <form onKeyPress={this.handleKeyPress.bind(this)}> 
                 <input 
                   type="text" 
                   id="new-task" 
@@ -39,13 +39,13 @@ class App extends Component {
      }) 
    } 
 
-   handleKeyPress = (event) => { 
+   handleKeyPress(event) { 
        event.preventDefault();
        let oldTasks = this.state.tasks 
        let newTask = this.state.newTask 
        this.setState({ 
            tasks: [...oldTasks, newTask], 
-           newTask: '' 
+           newTask: ""
        }) 
    }
  } 
